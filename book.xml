@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue>
+    <book id="101">
+        <title> Introduction to XML</title>
+        <author>John Doe</author>
+        <price>45.99</price>
+    </book>
+    <book id="102">
+        <title>Web Development Basics</title>
+        <author>Jane Smith</author>
+        <price>29.50</price>
+    </book>
+    <book id="103">
+        <title>JavaScript Adbanced</title>
+        <author>Alice Johnson</author>
+        <price>55.00</price>
+    </book>
+</catalogue>

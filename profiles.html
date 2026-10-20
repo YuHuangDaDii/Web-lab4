@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>User Profiles</title>
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+                background-color:#f9f9f9;
+                padding:20px;
+            }
+            h1{
+                text-align:center;
+                color:#333;
+            }
+            .container{
+                display:flex;
+                flex-wrap:wrap;
+                gap:20px;
+                justify-content:center;
+            }
+            .profile-card{
+                background:#fff;
+                border-radius:10px;
+                box-shadow:0 4px 8px rgba(0,0,0,0.1);
+                padding:20px;
+                width:300px;
+            }
+            .profile-card h2{
+                margin-top:0;
+                color:#2c3e50;
+                border-bottom:2px solid #eee;
+                padding-bottom:10px;
+            }
+            .profile-info{
+                margin-bottom:10px;
+                color:#555;
+                font-size:0.95em;
+            }
+            .profile-info strong{color:#333;}
+            .preferences{
+                background:#f1f1f1;
+                padding:10px;
+                border-radius:5px;
+                font-size:0.9em;
+                margin-top:15px;
+            }
+            .preferences h3{
+                margin:0 0 5px 0;
+                font-size:1em;
+                color:#444;
+            }
+            .subscribed{
+                color:green;
+                font-weight:bold;
+            }
+            .not-subscribed{
+                color:red;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>User Profiles</h1>
+        <div id="profiles-container" class="container">Loading profiles...</div>
+        <script>
+            const container=document.getElementById('profiles-container');
+            fetch('userProfiles.json')
+                .then(response=>{
+                    if(!response.ok){
+                        throw new Error('Fetch error: '+response.status);
+                    }
+                    return response.json(); 
+                })
+                .then(json=>{
+                    container.innerHTML='';
+                    json.forEach(user=>{
+                        const card=document.createElement('div');
+                        card.className='profile-card';
+                        const subStatus=user.preferences.subscription 
+                            ?'<span class="subscribed">Subscribed</span>' 
+                            :'<span class="not-subscribed">Not Subscribed</span>';
+                        card.innerHTML=`
+                            <h2>${user.firstName} ${user.lastName}</h2>
+                            <div class="profile-info"><strong>Email:</strong> ${user.email}</div>
+                            <div class="profile-info"><strong>Date of Birth:</strong> ${user.dateOfBirth}</div>
+                            <div class="profile-info" style="margin-top: 10px;">
+                                <strong>Address:</strong><br>
+                                ${user.address.street}<br>
+                                ${user.address.city},${user.address.state} ${user.address.zipCode}
+                            </div>
+                            <div class="preferences">
+                                <h3>Preferences</h3>
+                                <div><strong>Theme:</strong> ${user.preferences.theme}</div>
+                                <div><strong>Language:</strong> ${user.preferences.language}</div>
+                                <div><strong>Notifications:</strong> ${user.preferences.notifications ? 'On' : 'Off'}</div>
+                                <div><strong>Newsletter:</strong> ${subStatus}</div>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                }) 
+                .catch(err=>{
+                    console.error('Fetch error:',err.message);
+                    document.getElementById('profiles-container').innerHTML=`<p style="color:red;">Error loading profiles: ${err.message}</p>`;
+                });
+        </script>
+    </body>
+</html>

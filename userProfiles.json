@@ -1,0 +1,56 @@
+[
+  {
+    "firstName":"Alice",
+    "lastName":"Johnson",
+    "email":"alice.johnson@example.com",
+    "dateOfBirth":"1990-05-14",
+    "address":{
+      "street":"123 Maple Street",
+      "city":"Palmerston North",
+      "state":"Manawatu",
+      "zipCode":"4412"
+    },
+    "preferences":{
+      "theme":"dark",
+      "language":"en",
+      "notifications":true,
+      "subscription":false
+    }
+  },
+  {
+    "firstName":"Bob",
+    "lastName":"Smith",
+    "email":"bob.smith@example.com",
+    "dateOfBirth":"1985-11-22",
+    "address":{
+      "street":"456 Oak Avenue",
+      "city":"Wellington",
+      "state":"Wellington",
+      "zipCode":"6011"
+    },
+    "preferences":{
+      "theme":"light",
+      "language":"es",
+      "notifications":false,
+      "subscription":true
+    }
+  },
+  {
+    "firstName":"Charlie",
+    "lastName":"Brown",
+    "email":"charlie.brown@example.com",
+    "dateOfBirth":"2000-01-30",
+    "address":{
+      "street":"789 Pine Road",
+      "city":"Auckland",
+      "state":"Auckland",
+      "zipCode":"1010"
+    },
+    "preferences":{
+      "theme":"system",
+      "language":"fr",
+      "notifications":true,
+      "subscription":true
+    }
+  }
+]
